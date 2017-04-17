@@ -43,3 +43,9 @@ public class LinePlotterAdapter extends DrawPanelController implements IPlotter
         return "@Q!$!@$!#@$(*#@&Q(%^*#@";
     }
 }
+
+/*
+Adaptera uzywamy gdy interfejsy dla klas sa niekompatybilne, a chcemy te klasy sa soba polaczyc.
+Czyli gdy otrzebujemy modyfikacji istniejacego juz interfejsu, ktory jest wykorzystywany,
+ale samego interfejsu zmienic nie mozemy.
+ */
