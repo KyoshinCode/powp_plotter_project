@@ -27,7 +27,6 @@ public class NewLinePlotterAdapter implements IPlotter{
 
     @Override
     public void drawTo(int x, int y) {
-        line = LineFactory.getBasicLine();
         line.setStartCoordinates(this.x, this.y);
         line.setEndCoordinates(x, y);
 

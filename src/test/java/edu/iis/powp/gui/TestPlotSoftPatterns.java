@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import edu.iis.client.plottermagic.ClientPlotter;
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.adapter.LinePlotterAdapter;
+import edu.iis.powp.adapter.NewLinePlotterAdapter;
 import edu.iis.powp.app.Application;
 import edu.iis.powp.app.Context;
 import edu.iis.powp.app.DriverManager;
@@ -16,6 +17,7 @@ import edu.iis.powp.events.predefine.SelectChangeVisibleOptionListener;
 import edu.iis.powp.events.predefine.SelectTestFigureOptionListener;
 import edu.kis.powp.drawer.panel.DefaultDrawerFrame;
 import edu.kis.powp.drawer.panel.DrawPanelController;
+import edu.kis.powp.drawer.shape.LineFactory;
 
 
 public class TestPlotSoftPatterns
@@ -42,12 +44,12 @@ public class TestPlotSoftPatterns
 	 * @param context Application context.
 	 */
 	private static void setupDrivers(Context context) {
-		IPlotter clientPlotter = new ClientPlotter();
-		context.addDriver("Client Plotter", clientPlotter);
-		Application.getComponent(DriverManager.class).setCurrentPlotter(clientPlotter);
-		
-		IPlotter plotter = new LinePlotterAdapter(context);
-		context.addDriver("Buggy Simulator", plotter);
+		IPlotter basicPlotter = new LinePlotterAdapter(ApplicationWithDrawer.getDrawPanelController());
+        context.addDriver("Bug free simulator", basicPlotter);
+
+        IPlotter linePlotter = new NewLinePlotterAdapter(ApplicationWithDrawer.getDrawPanelController(), LineFactory.getSpecialLine());
+        context.addDriver("Line plotter", linePlotter);
+
 
 		context.updateDriverInfo();
 	}
@@ -63,7 +65,7 @@ public class TestPlotSoftPatterns
         		new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
         defaultDrawerWindow.setVisible(true);
 	}
-	
+
 	/**
 	 * Setup menu for adjusting logging settings.
 	 * 
