@@ -17,6 +17,6 @@ public class CommandDrawToLinePosition implements IPlotterCommand{
 
     @Override
     public void execute(IPlotter plotter) {
-
+        plotter.drawTo(x, y);
     }
 }

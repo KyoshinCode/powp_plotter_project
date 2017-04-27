@@ -18,6 +18,6 @@ public class CommandSetPosition implements IPlotterCommand{
 
     @Override
     public void execute(IPlotter plotter) {
-
+        plotter.drawTo(x, y);
     }
 }
